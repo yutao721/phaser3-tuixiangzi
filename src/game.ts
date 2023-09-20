@@ -1,27 +1,30 @@
-import Phaser from 'phaser'
+import 'phaser'
 import MainScene from './scenes/mainScene'
 import PreloadScene from './scenes/preloadScene'
 import ModalScene from './scenes/ModalScene'
 
 const DEFAULT_WIDTH = 750
 const DEFAULT_HEIGHT = 1624
-const config: Phaser.Types.Core.GameConfig = {
+
+const config = {
   type: Phaser.AUTO,
-  parent: 'app',
+  backgroundColor: '#73ad45',
   scale: {
-    parent: 'app',
+    parent: 'phaser-game',
     mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
     // autoCenter: Phaser.Scale.CENTER_BOTH,
     width: DEFAULT_WIDTH,
     height: DEFAULT_HEIGHT
   },
+  scene: [PreloadScene, MainScene, ModalScene],
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: { y: 200 },
-    },
-  },
-  scene: [PreloadScene, MainScene, ModalScene],
+      debug: false,
+      gravity: { y: 400 }
+    }
+  }
 }
+
 
 export default new Phaser.Game(config)
